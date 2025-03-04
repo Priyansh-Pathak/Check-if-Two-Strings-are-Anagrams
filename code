@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+void countFreq(char str[], int freq[]) {
+    for (int i = 0; str[i]; i++)
+        freq[str[i] - 'a']++;
+}
+
+bool areAnagrams(char str1[], char str2[]) {
+    int freq1[26] = {0}, freq2[26] = {0};
+    countFreq(str1, freq1);
+    countFreq(str2, freq2);
+    for (int i = 0; i < 26; i++) {
+        if (freq1[i] != freq2[i]) return false;
+    }
+    return true;
+}
+
+int main() {
+    char str1[] = "listen", str2[] = "silent";
+    if (areAnagrams(str1, str2))
+        printf("Anagrams\n");
+    else
+        printf("Not Anagrams\n");
+    return 0;
+}
